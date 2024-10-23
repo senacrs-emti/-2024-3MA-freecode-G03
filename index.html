@@ -20,12 +20,12 @@
         // Inicializa o mapa quando a API for carregada
         function initMap() {
             const map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: -30.025296, lng: -51.211922 }, // Coordenadas de São Paulo
+                center: { lat: -30.025296, lng: -51.211922 }, 
                 zoom: 1,
             });
 
             const marker = new google.maps.Marker({
-                position: { lat: -30.025296, lng: 51.211922 },
+                position: { lat: -30.025296, lng: -51.211922 },
                 map: map,
                 title: "Senac Distrito Criativo",
             });
