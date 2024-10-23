@@ -21,13 +21,23 @@
         function initMap() {
             const map = new google.maps.Map(document.getElementById("map"), {
                 center: { lat: -30.025296, lng: -51.211922 }, 
-                zoom: 1,
+                zoom: 2, // Aumentei o zoom para visualizar ambos os marcadores
             });
 
-            const marker = new google.maps.Marker({
+            // Marcador original
+            const marker1 = new google.maps.Marker({
                 position: { lat: -30.025296, lng: -51.211922 },
                 map: map,
                 title: "Senac Distrito Criativo",
+                icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png" // Ícone de marcador vermelho
+            });
+
+            // Marcador para a França
+            const marker2 = new google.maps.Marker({
+                position: { lat: 48.855451, lng: 2.350692 },
+                map: map,
+                title: "França - Paris",
+                icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" // Ícone de marcador azul
             });
         }
 
