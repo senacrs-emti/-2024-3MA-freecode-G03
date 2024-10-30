@@ -5,83 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATLAS HISTÓRICO</title>
     <link rel="stylesheet" href="style.css">
-    <script src="./js/script.js"></script>
-    <script src="./js/map.js"></script>
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIlS4qgZzbTPEYiLruk8EK225_7try7mU&callback=initMap&libraries=maps,marker&v=beta"></script>
+    
+    <!-- Carregue apenas UMA vez a API do Google Maps -->
+    <script async defer 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIlS4qgZzbTPEYiLruk8EK225_7try7mU&callback=initMap&libraries=places">
+    </script>
 </head>
+
 <body>
     <header>
         <h1>Atlas Histórico</h1>
     </header>
     <main>
-        <div id="map"></div>
+        <div id="map" style="height: 500px; width: 100%;"></div>
     </main>
-    <div id="map1"></div>
-        <div class="overlay" id="overlay">
-            <h2>Modo de Uso</h2>
-            <p>Este site apresenta um mapa com pontos coloridos. Cada ponto representa impérios, guerras e revoluções ao longo da história dos países. Clique em cada marcador no mapa para descobrir mais informações sobre cada evento histórico.</p>
-        
+    
+    <div class="overlay" id="overlay">
+        <h2>Modo de Uso</h2>
+        <p>Este site apresenta um mapa com pontos coloridos. Cada ponto representa impérios, guerras e revoluções ao longo da história dos países. Clique em cada marcador no mapa para descobrir mais informações sobre cada evento histórico.</p>
         <button id="closeButton">Entendi</button>
     </div>
 
     <script>
-       
-            function initMap() {
+        // Função que inicializa o mapa
+        function initMap() {
             const map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: -30.025296, lng: -51.211922 },
-                zoom: 2, // Aumentei o zoom para visualizar ambos os marcadores
+                center: { lat: -30.025296, lng: -51.211922 }, // Coordenadas iniciais
+                zoom: 2,
             });
-            // Função para carregar locais do banco de dados
-            fetch('processa_localizacoes.php')
-                .then(response => response.json())
-                .then(data => {
-                    data.forEach(local => {
-                        const marker = new google.maps.Marker({
-                            position: { lat: parseFloat(local.latitude), lng: parseFloat(local.longitude) },
-                            map: map,
-                            title: local.nome_local,
-                            icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
-                        });
 
-                        // Adiciona um infowindow ao clicar no marcador
-                        const infowindow = new google.maps.InfoWindow({
-                            content: `<h3>${local.nome_local}</h3><p>${local.descricao}</p>`
-                        });
+            const markers = [
+                { position: { lat: -30.025296, lng: -51.211922 }, title: "Senac Distrito Criativo", icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png" },
+                { position: { lat: 48.855451, lng: 2.350692 }, title: "França - Paris", icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" },
+                { position: { lat: 26.404693, lng: 29.762399 }, title: "Egito", icon: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png" },
+                { position: { lat: 39.409713, lng: 22.508420 }, title: "Grécia", icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" },
+                { position: { lat: 41.895742, lng: 12.481967 }, title: "Roma", icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" },
+                { position: { lat: 39.919946, lng: 116.413294 }, title: "China", icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" }
+            ];
 
-                        marker.addListener("click", () => {
-                            infowindow.open(map, marker);
-                        });
-                    });
+            markers.forEach(markerData => {
+                const marker = new google.maps.Marker({
+                    position: markerData.position,
+                    map: map,
+                    title: markerData.title,
+                    icon: markerData.icon
                 });
-        }
-         // Script para carregar a API do Google Maps
-         (function(g) {
-            var h, a, k, p = "The Google Maps JavaScript API", c = "google",
-                l = "importLibrary", q = "__ib__", m = document, b = window;
-            b = b[c] || (b[c] = {});
-            var d = b.maps || (b.maps = {}), r = new Set(), e = new URLSearchParams();
-            var u = () => h || (h = new Promise(async(f, n) => {
-                await (a = m.createElement("script"));
-                e.set("libraries", [...r] + "");
-                for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]);
-                e.set("callback", c + ".maps." + q);
-                a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
-                d[q] = f;
-                a.onerror = () => h = n(Error(p + " could not load."));
-                a.nonce = m.querySelector("script[nonce]")?.nonce || "";
-                m.head.append(a);
-            }));
-            d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n));
-        })({
-            key: "AIzaSyDIlS4qgZzbTPEYiLruk8EK225_7try7mU", // Substitua pela sua chave de API
-            v: "weekly",
-        });
-        document.getElementById('closeButton').addEventListener('click', function() {
-    const overlay = document.getElementById('overlay');
-    overlay.style.display = 'none'; // Oculta a sobreposição
-    document.getElementById('map').style.zIndex = '1';    });
 
-   
+                const infowindow = new google.maps.InfoWindow({
+                    content: `<h3>${markerData.title}</h3>`
+                });
+
+                marker.addListener("click", () => {
+                    infowindow.open(map, marker);
+                });
+            });
+        }
+
+        // Função para ocultar a sobreposição de introdução
+        document.getElementById('closeButton').addEventListener('click', function() {
+            const overlay = document.getElementById('overlay');
+            overlay.style.display = 'none';
+            document.getElementById('map').style.zIndex = '1';
+        });
     </script>
 </body>
 </html>
