@@ -54,10 +54,10 @@ body {
     text-align: center;
 }
 
-.overlay h2 {
-    margin-bottom: 20px;
-}
 
+h2 {
+    margin-top: 90px;
+}
 .overlay button {
     padding: 10px 20px;
     background-color: #151411; /* Cor do botão */
@@ -73,5 +73,7 @@ body {
 
 
 .overlay p {
-    margin: 140px; /* Margem dos lados do parágrafo */
+    margin-top: 10px;
+    margin-left: 10%;
+    margin-right: 10%; /* Margem dos lados do parágrafo */
 }
