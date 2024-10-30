@@ -27,3 +27,46 @@ main {
     height: 500px; /* Definindo altura do mapa */
     width: 100%;   /* Definindo largura do mapa */
 }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+#map {
+    height: 100vh;
+    width: 100%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Preto com transparência */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1; /* Para ficar acima do mapa */
+    text-align: center;
+}
+
+.overlay h2 {
+    margin-bottom: 20px;
+}
+
+.overlay button {
+    padding: 10px 20px;
+    background-color: #151411; /* Cor do botão */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.overlay button:hover {
+    background-color: #1e1d1b; /* Efeito hover */
+}
