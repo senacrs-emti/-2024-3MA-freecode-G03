@@ -59,4 +59,4 @@
     });
 
 
-   
+    console.log(map)
