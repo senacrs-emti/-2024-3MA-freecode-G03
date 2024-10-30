@@ -6,7 +6,7 @@
     <title>ATLAS HISTÓRICO</title>
     <link rel="stylesheet" href="style.css">
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIlS4qgZzbTPEYiLruk8EK225_7try7mU&callback=initMap&libraries=maps,marker&v=beta"></script>
-    <script src="mapa.js"></script>
+    <script src="map.js"></script>
 </head>
 <body>
     <header>
@@ -36,42 +36,6 @@
                 icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png" // Ícone de marcador vermelho
             });
 
-            // Marcador para a França
-            const marker2 = new google.maps.Marker({
-                position: { lat: 48.855451, lng: 2.350692 },
-                map: map,
-                title: "França - Paris",
-                icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" // Ícone de marcador azul
-            });
-       
-         // Marcador para o egito
-         const marker3 = new google.maps.Marker({
-                position: { lat: 26.404693, lng: 29.762399 },
-                map: map,
-                title: "Egito",
-                icon: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png" // Ícone de marcador amarelo
-            });
-        // Marcador para a grecia
-        const marker4 = new google.maps.Marker({
-                position: { lat: 39.409713, lng: 22.508420 },
-                map: map,
-                title: "Grécia",
-                icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" // Ícone de marcador azul
-            });
-            // Marcador para a roma
-        const marker5 = new google.maps.Marker({
-                position: { lat: 41.895742, lng: 12.481967 },
-                map: map,
-                title: "Roma",
-                icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" // Ícone de marcador azul
-            });
-            //marcador da china
-            const marker6 = new google.maps.Marker({
-                position: { lat: 39.919946, lng: 116.413294 },
-                map: map,
-                title: "China",
-                icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" // Ícone de marcador azul
-            });
         }
         // Script para carregar a API do Google Maps
         (function(g) {

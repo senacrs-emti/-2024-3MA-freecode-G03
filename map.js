@@ -1,7 +1,7 @@
     // Inicializa o mapa quando a API for carregada
     function initMap() {
         const map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: -30.025296, lng: -51.211922 }, // Coordenadas de São Paulo
+            center: { lat: -30.025296, lng: -51.211922 }, // Coordenadas iniciais do total
             zoom: 10,
         });
 
@@ -33,16 +33,11 @@
         }));
         d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n));
     })({
-        key: "AIzaSyDIlS4qgZzbTPEYiLruk8EK225_7try7mU", // Substitua pela sua chave de API
+        key: "AIzaSyDIlS4qgZzbTPEYiLruk8EK225_7try7mU", 
         v: "weekly",
     });
 
-    // Inicializa o mapa quando a API for carregada
-function initMap() {
-    const map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: -30.025296, lng: -51.211922 }, 
-        zoom: 2,
-    });
+   
 
     // Marcadores
     const markers = [
@@ -62,9 +57,10 @@ function initMap() {
             icon: marker.icon
         });
     });
-}
 
-// Evento do botão "Entendi"
 document.getElementById('closeButton').addEventListener('click', function() {
-    document.body.style.display = 'none'; // Oculta todo o corpo da página
-});
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'none'; // Oculta a sobreposição
+    document.getElementById('map').style.zIndex = '1';    });
+
+   
