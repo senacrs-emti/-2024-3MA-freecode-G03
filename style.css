@@ -70,3 +70,8 @@ body {
 .overlay button:hover {
     background-color: #1e1d1b; /* Efeito hover */
 }
+
+
+.overlay p {
+    margin: 140px; /* Margem dos lados do parágrafo */
+}
