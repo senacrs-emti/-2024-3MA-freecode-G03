@@ -29,6 +29,15 @@ if ($result->num_rows > 0) {
 echo json_encode($locais);
 
 $conn->close();
-?>
 
- 
+
+if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo "createMarker(" . $row["latitude"] . ", " . $row["longitude"] . ", '" . $row["descricao"] . "');";
+                }
+            } else {
+                echo "0 results";
+            }
+            $conn->close();
+            ?> 
+?>
