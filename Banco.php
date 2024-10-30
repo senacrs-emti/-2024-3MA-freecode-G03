@@ -1,8 +1,8 @@
     <?php
 $servername = "localhost";
-$username = "root";  // Altere de acordo com seu usuário MySQL
-$password = "";      // Altere de acordo com sua senha MySQL
-$dbname = "LocalizacoesDB";
+$username = "root"; 
+$password = "";      
+$dbname = "BD";
 
 // Cria a conexão
 $conn = new mysqli($servername, $username, $password, $dbname);
