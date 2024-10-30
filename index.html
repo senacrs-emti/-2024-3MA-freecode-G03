@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATLAS HISTÓRICO</title>
     <link rel="stylesheet" href="style.css">
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIlS4qgZzbTPEYiLruk8EK225_7try7mU&callback=initMap&libraries=maps,marker&v=beta"></script>
-    <script src="map.js"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=maps,marker&v=beta"></script>
 </head>
 <body>
     <header>
@@ -22,26 +21,40 @@
         
         <button id="closeButton">Entendi</button>
     </div>
+
     <script>
-        // Inicializa o mapa quando a API for carregada
-        function initMap() {
+       
+            function initMap() {
             const map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: -30.025296, lng: -51.211922 }, 
+                center: { lat: -30.025296, lng: -51.211922 },
                 zoom: 2, // Aumentei o zoom para visualizar ambos os marcadores
             });
+            // Função para carregar locais do banco de dados
+            fetch('processa_localizacoes.php')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(local => {
+                        const marker = new google.maps.Marker({
+                            position: { lat: parseFloat(local.latitude), lng: parseFloat(local.longitude) },
+                            map: map,
+                            title: local.nome_local,
+                            icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                        });
 
-            // Marcador original
-            const marker1 = new google.maps.Marker({
-                position: { lat: -30.025296, lng: -51.211922 },
-                map: map,
-                title: "Senac Distrito Criativo",
-                icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png" // Ícone de marcador vermelho
-            });
+                        // Adiciona um infowindow ao clicar no marcador
+                        const infowindow = new google.maps.InfoWindow({
+                            content: `<h3>${local.nome_local}</h3><p>${local.descricao}</p>`
+                        });
 
+                        marker.addListener("click", () => {
+                            infowindow.open(map, marker);
+                        });
+                    });
+                });
         }
-        // Script para carregar a API do Google Maps
-        (function(g) {
-            var h, a, k, p = "The Google Maps JavaScript API", c = "google", 
+         // Script para carregar a API do Google Maps
+         (function(g) {
+            var h, a, k, p = "The Google Maps JavaScript API", c = "google",
                 l = "importLibrary", q = "__ib__", m = document, b = window;
             b = b[c] || (b[c] = {});
             var d = b.maps || (b.maps = {}), r = new Set(), e = new URLSearchParams();
@@ -61,6 +74,7 @@
             key: "AIzaSyDIlS4qgZzbTPEYiLruk8EK225_7try7mU", // Substitua pela sua chave de API
             v: "weekly",
         });
+    
     </script>
 </body>
 </html>
