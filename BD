@@ -1,0 +1,94 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Tempo de geração: 30/10/2024 às 13:53
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Banco de dados: `atlas`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `CategoriaID` int(11) NOT NULL,
+  `Nome` varchar(45) DEFAULT NULL,
+  `Guerras` varchar(45) DEFAULT NULL,
+  `Imperios` varchar(45) DEFAULT NULL,
+  `Revolucoes` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `eventos`
+--
+
+CREATE TABLE `eventos` (
+  `EventoID` int(11) NOT NULL,
+  `nome_local` varchar(255) NOT NULL,
+  `nome_evento` varchar(45) NOT NULL,
+  `latitude` decimal(10,8) NOT NULL,
+  `longitude` decimal(11,8) DEFAULT NULL,
+  `descricao` varchar(45) DEFAULT NULL,
+  `CategoriaID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices de tabela `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`CategoriaID`);
+
+--
+-- Índices de tabela `eventos`
+--
+ALTER TABLE `eventos`
+  ADD PRIMARY KEY (`EventoID`),
+  ADD KEY `fk_Eventos_Categoria_idx` (`CategoriaID`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `CategoriaID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restrições para tabelas despejadas
+--
+
+--
+-- Restrições para tabelas `eventos`
+--
+ALTER TABLE `eventos`
+  ADD CONSTRAINT `fk_Eventos_Categoria` FOREIGN KEY (`CategoriaID`) REFERENCES `categoria` (`CategoriaID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
