@@ -75,6 +75,8 @@ h2 {
 
 .overlay p {
     margin-top: 10px;
-    margin-left: 10%;
-    margin-right: 10%; /* Margem dos lados do parágrafo */
+    margin-left: 35%;
+    margin-right: 30%; /* Margem dos lados do parágrafo */
+    text-align: left;
+    
 }

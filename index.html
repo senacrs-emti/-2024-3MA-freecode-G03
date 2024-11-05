@@ -22,12 +22,18 @@
     
     <div class="overlay" id="overlay">
         <h2>Modo de Uso</h2>
-        <p>Este site apresenta um mapa com pontos coloridos. Cada ponto representa impérios, guerras e revoluções ao longo da história dos países. Clique em cada marcador no mapa para descobrir mais informações sobre cada evento histórico.</p>
+        <p>Este site apresenta um mapa com pontos coloridos.
+            Cada ponto colorido representa um impérios, guerras ou revoluções ao longo da história dos países.
+            <br>O <span style="color: #f00;">ponto vermelho</span> representa aonde o site está sendo feito.
+            <br>O <span style="color: rgb(17, 0, 255);">ponto Azul</span> representa os Impérios.
+            <br>O <span style="color: rgb(229, 255, 0);">ponto Amarelo</span> representa as Guerras.
+            <br>E o <span style="color: rgb(0, 255, 13);">ponto verde</span> representa as Revoluções.
+            <br>Clique em cada marcador no mapa para descobrir mais informações sobre cada evento histórico.</p>
         <button id="closeButton">Entendi</button>
     </div>
 
     <script>
-        // Função que inicializa o mapa
+        // Função que inicial iza o mapa
         function initMap() {
             const map = new google.maps.Map(document.getElementById("map"), {
                 center: { lat: -30.025296, lng: -51.211922 }, // Coordenadas iniciais
