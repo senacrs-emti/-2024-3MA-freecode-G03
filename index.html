@@ -46,7 +46,7 @@
                 { position: { lat: 26.404693, lng: 29.762399 }, title: "Egito", icon: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png" },
                 { position: { lat: 39.409713, lng: 22.508420 }, title: "Grécia", icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" },
                 { position: { lat: 41.895742, lng: 12.481967 }, title: "Roma", icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" },
-                { position: { lat: 39.919946, lng: 116.413294 }, title: "China", icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" }
+                { position: { lat: 39.919946, lng: 116.413294 }, title: "China",text:"lorem psium", icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" }
             ];
 
             markers.forEach(markerData => {
@@ -54,12 +54,26 @@
                     position: markerData.position,
                     map: map,
                     title: markerData.title,
+                    text: markerData.text,
                     icon: markerData.icon
                 });
 
+                /*
                 const infowindow = new google.maps.InfoWindow({
-                    content: `<h3>${markerData.title}</h3>`
+                    content: `<h3>${markerData.title}</h3>`,
+                    content: `<h4>${markerData.text}</h4>`
                 });
+                */
+
+                const infowindow = new google.maps.InfoWindow({
+                    content: `
+                        <div>
+                            <h3>${markerData.title}</h3>
+                            <h4>${markerData.text}</h4>
+                        </div>
+                    `
+                });
+
 
                 marker.addListener("click", () => {
                     infowindow.open(map, marker);
