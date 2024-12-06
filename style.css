@@ -26,6 +26,9 @@ h1 {
     margin: 0;
     
 }
+i {
+    margin-left: 20px;
+}
 
 main {
     width: 100%;
